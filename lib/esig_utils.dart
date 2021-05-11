@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:crypto/crypto.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:intl/intl.dart';
 
 class EsigUtils {
