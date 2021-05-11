@@ -14,7 +14,6 @@
 
 * Corrigindo versão do crypto para ^3.0.0
 
-
 ## [0.0.1] - 10/05/2021
 
 * Utilitários gerais.
