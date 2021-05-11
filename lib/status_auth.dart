@@ -6,7 +6,5 @@ enum StatusLogin {
 }
 
 extension StatusLoginExt on StatusLogin {
-  static String _mensagem = "";
-  String get getMensagem => _mensagem;
-  set setMensagem(String value) => _mensagem = value;
+  static String mensagem = '';
 }
