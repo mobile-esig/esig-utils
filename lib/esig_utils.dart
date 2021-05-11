@@ -19,7 +19,7 @@ class EsigUtils {
   }
 
   static String convertToReal(double valor) {
-    if (valor == 0) return "0,00";
+    if (valor == 0) return '0,00';
     return NumberFormat(NUMBER_FORMAT, 'pt_BR').format(valor);
   }
 
