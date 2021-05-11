@@ -8,7 +8,9 @@ class EsigUtils {
   static const String NUMBER_FORMAT = '###,##0.00';
 
   static Map<String, dynamic> addParams(
-      Map<String, dynamic> map, Map<String, dynamic> objects) {
+    Map<String, dynamic> map,
+    Map<String, dynamic> objects,
+  ) {
     objects.forEach((key, value) {
       if (value != null) {
         map[key] = value;
@@ -34,12 +36,12 @@ class EsigUtils {
     String strCpfCnpj = cpfCnpj.toString();
 
     if (strCpfCnpj.length > 11) {
-      strCpfCnpj = '0' * (14 - strCpfCnpj.length) + strCpfCnpj;
+      strCpfCnpj = strCpfCnpj.padLeft(14, '0');
       var cnpjController =
           MaskedTextController(text: strCpfCnpj, mask: '00.000.000/0000-00');
       return cnpjController.text;
     } else {
-      strCpfCnpj = '0' * (11 - strCpfCnpj.length) + strCpfCnpj;
+      strCpfCnpj = strCpfCnpj.padLeft(11, '0');
       var cpfController =
           MaskedTextController(text: strCpfCnpj, mask: '000.000.000-00');
       return cpfController.text;
@@ -53,6 +55,7 @@ class EsigUtils {
           .format(valor)
           .replaceFirst('.', ',');
 
+  /// Usado em senhas
   static String convertToMd5(String text) {
     return md5.convert(utf8.encode(text)).toString();
   }

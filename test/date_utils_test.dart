@@ -1,7 +1,6 @@
 import 'package:esig_utils/models/dia.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import '../lib/date_utils.dart';
 
 void main() {
@@ -160,6 +159,60 @@ void main() {
       dias = EsigDateUtils.getListaDias(inicio, fim);
       expect(inicio, Dia(2020, 1, 1));
       expect(fim, Dia(2020, 2, 31));
+    });
+
+    test('Bimestre', () async {
+      expect(EsigDateUtils.bimestre(DateTime(2020, 01, 01)), 1);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 02, 01)), 1);
+
+      expect(EsigDateUtils.bimestre(DateTime(2020, 03, 01)), 2);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 04, 01)), 2);
+
+      expect(EsigDateUtils.bimestre(DateTime(2020, 05, 01)), 3);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 06, 01)), 3);
+
+      expect(EsigDateUtils.bimestre(DateTime(2020, 07, 01)), 4);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 08, 01)), 4);
+
+      expect(EsigDateUtils.bimestre(DateTime(2020, 09, 01)), 5);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 10, 01)), 5);
+
+      expect(EsigDateUtils.bimestre(DateTime(2020, 11, 01)), 6);
+      expect(EsigDateUtils.bimestre(DateTime(2020, 12, 01)), 6);
+    });
+
+    test('Trimestre', () async {
+      expect(EsigDateUtils.trimestre(DateTime(2020, 01, 01)), 1);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 02, 01)), 1);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 03, 01)), 1);
+
+      expect(EsigDateUtils.trimestre(DateTime(2020, 04, 01)), 2);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 05, 01)), 2);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 06, 01)), 2);
+
+      expect(EsigDateUtils.trimestre(DateTime(2020, 07, 01)), 3);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 08, 01)), 3);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 09, 01)), 3);
+
+      expect(EsigDateUtils.trimestre(DateTime(2020, 10, 01)), 4);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 11, 01)), 4);
+      expect(EsigDateUtils.trimestre(DateTime(2020, 12, 01)), 4);
+    });
+
+    test('Semestre', () async {
+      expect(EsigDateUtils.semestre(DateTime(2020, 01, 01)), 1);
+      expect(EsigDateUtils.semestre(DateTime(2020, 02, 01)), 1);
+      expect(EsigDateUtils.semestre(DateTime(2020, 03, 01)), 1);
+      expect(EsigDateUtils.semestre(DateTime(2020, 04, 01)), 1);
+      expect(EsigDateUtils.semestre(DateTime(2020, 05, 01)), 1);
+      expect(EsigDateUtils.semestre(DateTime(2020, 06, 01)), 1);
+
+      expect(EsigDateUtils.semestre(DateTime(2020, 07, 01)), 2);
+      expect(EsigDateUtils.semestre(DateTime(2020, 08, 01)), 2);
+      expect(EsigDateUtils.semestre(DateTime(2020, 09, 01)), 2);
+      expect(EsigDateUtils.semestre(DateTime(2020, 10, 01)), 2);
+      expect(EsigDateUtils.semestre(DateTime(2020, 11, 01)), 2);
+      expect(EsigDateUtils.semestre(DateTime(2020, 12, 01)), 2);
     });
   });
 }
