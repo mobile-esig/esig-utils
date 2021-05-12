@@ -1,3 +1,8 @@
+## [1.0.3] - 12/05/2021
+
+* Adiciona: 
+    - Classe `SizeScreen` corrigida
+
 ## [1.0.2] - 11/05/2021
 
 * Adiciona: 
