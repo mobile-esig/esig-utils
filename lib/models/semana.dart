@@ -6,7 +6,7 @@ class Semana {
 
   int primeiroDiaUtil = EsigDateUtils.monday;
   int ultimoDiaUtil = EsigDateUtils.friday +
-      1; // Salva um dia a mais devido as funções de intervalo excludente, por exemplo: sublist()
+      1; // Salva um dia a mais devido às funções de intervalo excludente, por exemplo: sublist()
 
   Semana(this.dias);
 
