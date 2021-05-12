@@ -1,7 +1,9 @@
+## [2.0.0] - 12/05/2021
+* Conclui migração para null-safety
+
 ## [1.0.3] - 12/05/2021
 
-* Adiciona: 
-    - Classe `SizeScreen` corrigida
+* Classe `SizeScreen` corrigida
 
 ## [1.0.2] - 11/05/2021
 
