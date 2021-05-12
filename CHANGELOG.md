@@ -1,3 +1,6 @@
+## [2.0.1] - 12/05/2021
+* `Status` e `StatusLogin` com mensagem configurável. Testes implementados.
+
 ## [2.0.0] - 12/05/2021
 * Conclui migração para null-safety
 
