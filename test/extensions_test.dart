@@ -10,7 +10,6 @@ void main() {
       expect(1.pad, equals('01'));
       expect(11.pad, equals('11'));
       expect(0.pad, equals('00'));
-      expect(null.pad, equals(''));
     });
   });
 
