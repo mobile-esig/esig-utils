@@ -21,7 +21,7 @@ class SizeScreen {
     return MediaQuery.of(context).size.width / 2;
   }
 
-  static double helfHeight(BuildContext context) {
+  static double halfHeight(BuildContext context) {
     return MediaQuery.of(context).size.height / 2;
   }
 }
