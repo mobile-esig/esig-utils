@@ -29,7 +29,21 @@ void main() {
       // Datas diferentes, horas iguais
       data1 = DateTime(2020, 1, 2);
       data2 = DateTime(2020, 1, 1);
-      expect(data1.equal(data2), isTrue);
+      expect(data1.equal(data2), isFalse);
+    });
+
+    test('FormattedDate', () {
+      DateTime data = DateTime(2020, 1, 1);
+
+      // Data comum
+      expect(data.formattedDate, equals('01/01/2020'));
+    });
+
+    test('FormattedTime', () {
+      DateTime data = DateTime(2020, 1, 1, 23, 59, 00);
+
+      // Data comum
+      expect(data.formattedTime, equals('23:59:00'));
     });
   });
 }

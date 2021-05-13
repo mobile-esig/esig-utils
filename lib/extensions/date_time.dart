@@ -5,5 +5,5 @@ extension DateTimExt on DateTime {
       this.day == d.day && this.month == d.month && this.year == d.year;
 
   get formattedDate => '${this.day.pad}/${this.month.pad}/${this.year}';
-  get formattedTime => '${this.hour.pad}/${this.minute.pad}/${this.second.pad}';
+  get formattedTime => '${this.hour.pad}:${this.minute.pad}:${this.second.pad}';
 }
