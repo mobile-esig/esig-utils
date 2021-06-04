@@ -97,40 +97,28 @@ class EsigDateUtils {
     switch (month) {
       case 'JAN':
         return 1;
-        break;
       case 'FEV':
         return 2;
-        break;
       case 'MAR':
         return 3;
-        break;
       case 'ABR':
         return 4;
-        break;
       case 'MAI':
         return 5;
-        break;
       case 'JUN':
         return 6;
-        break;
       case 'JUL':
         return 7;
-        break;
       case 'AGO':
         return 8;
-        break;
       case 'SET':
         return 9;
-        break;
       case 'OUT':
         return 10;
-        break;
       case 'NOV':
         return 11;
-        break;
       case 'DEZ':
         return 12;
-        break;
       default:
         return 0;
     }
