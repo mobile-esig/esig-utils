@@ -1,7 +1,14 @@
+## [2.1.1] - WIP: dd/MM/2021
+
+* Novas funções em SizeScreen: `fracWidth` e `fracHeiht`.
+* Funções em SizeScreen marcadas como @Deprecated: `halfWidth` e `halfHeight`.
+
 ## [2.0.1] - 12/05/2021
+
 * `Status` e `StatusLogin` com mensagem configurável. Testes implementados.
 
 ## [2.0.0] - 12/05/2021
+
 * Conclui migração para null-safety
 
 ## [1.0.3] - 12/05/2021
@@ -10,11 +17,12 @@
 
 ## [1.0.2] - 11/05/2021
 
-* Adiciona: 
-    - modelos `Dia` e `Semana`
-    - Extension methods `date_time` e `zero_pad`
-    - Mais funções em `EsigDateUtils` e `EsigUtils`
-    - Testes na maioria das funções
+* Adiciona:
+
+  * modelos `Dia` e `Semana`
+  * Extension methods `date_time` e `zero_pad`
+  * Mais funções em `EsigDateUtils` e `EsigUtils`
+  * Testes na maioria das funções
 
 ## [1.0.0] - 10/05/2021
 

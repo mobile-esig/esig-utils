@@ -24,4 +24,14 @@ class SizeScreen {
   static double maxHeight(BuildContext context) {
     return MediaQuery.of(context).size.height;
   }
+
+  @Deprecated('Use [fracWidth(context, 2)] instead')
+  static double halfWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width / 2;
+  }
+
+  @Deprecated('Use [fracHeight(context, 2)] instead')
+  static double halfHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height / 2;
+  }
 }
