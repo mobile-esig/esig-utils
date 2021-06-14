@@ -47,15 +47,14 @@ class EsigDateUtils {
     return DateFormat('yyyy-MM-dd').parse(data);
   }
 
+  @Deprecated('Usar formatDateTime(...) passando a data e o formato desejado')
   static String formatDateDMA(DateTime data) {
-    return DateFormat('dd-MMM-yyyy', 'pt_BR')
-        .format(data)
-        .toUpperCase()
-        .replaceAll('-', ' ');
+    return '';
   }
 
-  static String formatDateDMAHMS(DateTime data) {
-    return DateFormat('dd-MM-yyyy HH:mm:ss').format(data);
+  static String formatDateTime(DateTime data,
+      {String format = 'dd/MM/yyyy HH:mm:ss'}) {
+    return DateFormat(format, 'pt_BR').format(data);
   }
 
   static String getNomeDiaSemana(Dia dia) {

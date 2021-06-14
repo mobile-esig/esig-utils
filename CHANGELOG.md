@@ -1,7 +1,8 @@
-## [2.1.1] - WIP: dd/MM/2021
+## [2.1.1] - 14/06/2021
 
 * Novas funções em SizeScreen: `fracWidth` e `fracHeiht`.
 * Funções em SizeScreen marcadas como @Deprecated: `halfWidth` e `halfHeight`.
+* Adicionada função de formatar `DateTime` em `date_utils.dart`
 
 ## [2.0.1] - 12/05/2021
 
@@ -32,11 +33,10 @@
 
 * Corrigindo versão do crypto para ^3.0.0
 
-## [0.0.1] - 10/05/2021
+## [0.0.1+1] - 10/05/2021
 
 * Utilitários gerais.
 
 ## [0.0.1] - 10/05/2021
 
 * Corrigindo versão do intl para ^0.17.0
-
