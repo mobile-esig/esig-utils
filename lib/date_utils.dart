@@ -13,7 +13,6 @@ class EsigDateUtils {
   static const int saturday = 6;
 
   /// Recebe String com formato 'dd-MM-aaaa hh-mm' e retorna 'dd/MM/aaaa'.
-  ///
   /// Ex.: '11-10-2020 03:00' é convertido para '11/10/2020'
   static String formatDMA(String data) {
     return data.split(' ')[0].replaceAll('-', '/');

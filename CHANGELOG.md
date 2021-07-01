@@ -1,3 +1,9 @@
+## [2.1.2] - 01/07/2021
+
+* Declara tipo de retorno das funções em `date_time.dart`
+* Adiciona função `textoSeperado(...)` na classe `EsigUtils`.
+* Adiciona testes de `textoSeperado(...)`.
+
 ## [2.1.1] - 14/06/2021
 
 * Novas funções em SizeScreen: `fracWidth` e `fracHeiht`.
