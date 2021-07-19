@@ -1,3 +1,7 @@
+## [2.1.3] - 01/07/2021
+
+* Adiciona a função showSnackbar() para mostrar uma snackbar customizada `date_time.dart`.
+
 ## [2.1.2] - 01/07/2021
 
 * Declara tipo de retorno das funções em `date_time.dart`
