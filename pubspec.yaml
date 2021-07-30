@@ -8,15 +8,10 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
   extended_masked_text: ^2.1.0
   intl: ^0.17.0
   crypto: ^3.0.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-flutter:
