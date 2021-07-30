@@ -76,6 +76,8 @@ class EsigUtils {
   }
 
   // Mostrar Snackbar personalizada
+  @Deprecated(
+      'Essa função será transferida para o pacote "loading_empty_error". Prefira não usá-la.')
   static void showSnackBar(String mensagem, Color bgColor, BuildContext context,
       {Duration? duration, IconData? icon, double? bottomPadding}) {
     ScaffoldMessenger.of(context).showSnackBar(
