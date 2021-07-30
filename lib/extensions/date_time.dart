@@ -1,9 +1,41 @@
 import 'package:esig_utils/extensions/zero_pad.dart';
 
 extension DateTimExt on DateTime {
-  bool equal(DateTime d) =>
+  /// Compara igualdade entre dois [DateTime] desconsiderando tempo
+  bool equalDate(DateTime d) =>
       this.day == d.day && this.month == d.month && this.year == d.year;
 
-  String get formattedDate => '${this.day.pad}/${this.month.pad}/${this.year}';
-  String get formattedTime => '${this.hour.pad}:${this.minute.pad}:${this.second.pad}';
+  /// Compara igualdade entre dois [DateTime] desconsiderando data.
+  /// É possível configurar para considerar segundos.
+  bool equalTime(DateTime d, [bool includeSeconds = true]) {
+    bool isSecondsEqual = includeSeconds ? this.second == d.second : true;
+
+    return this.hour == d.hour && this.minute == d.minute && isSecondsEqual;
+  }
+
+  /// Retorna String com data formatada.
+  /// É possível configurar o caractere separador.
+  String formattedDate([String separator = '/']) =>
+      '${this.day.pad}$separator${this.month.pad}$separator${this.year}';
+
+  /// Retorna String com tempo formatado.
+  /// É possível configurar o caractere separador.
+  /// É possível configurar se deve incluir segundos.
+  String formattedTime([bool includeSeconds = true, String separator = ':']) {
+    String time = '${this.hour.pad}$separator${this.minute.pad}';
+
+    if (includeSeconds) time += '$separator${this.second.pad}';
+
+    return time;
+  }
+
+  /// Retorna String com data e tempo formatados.
+  /// É possível configurar o caractere separador de cada uma das informações.
+  /// É possível configurar se tempo deve incluir segundos.
+  String formattedDateTime([
+    bool includeSeconds = false,
+    String dateSeparator = '/',
+    String timeSeparator = ':',
+  ]) =>
+      '${this.formattedDate(dateSeparator)} ${this.formattedTime(includeSeconds, timeSeparator)}';
 }

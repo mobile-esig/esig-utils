@@ -4,7 +4,6 @@ enum Status {
   VAZIO,
   AGUARDANDO,
 }
-
 extension StatusExt on Status {
   static String msg = '';
   set mensagem(String novaMsg) => msg = novaMsg;
