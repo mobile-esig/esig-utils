@@ -1,3 +1,8 @@
+## [3.1.0] - 02/08/2021
+
+* Cria `http_utils.dart` com função que traduz mensagens do servidor para uma linguagem mais amigável.
+* Implementa testes dos membros de `http_utils.dart`.
+
 ## [3.0.0] - 30/07/2021
 
 * Adiciona `String formattedDateTime()` na extension `date_time.dart`.
@@ -5,13 +10,13 @@
 
 ## [2.1.3] - 01/07/2021
 
-* Adiciona a função showSnackbar() para mostrar uma snackbar customizada `date_time.dart`.
+* Adiciona a função `showSnackbar()` para mostrar uma snackbar customizada `date_time.dart`.
 
 ## [2.1.2] - 01/07/2021
 
 * Declara tipo de retorno das funções em `date_time.dart`.
-* Adiciona função `textoSeperado(...)` na classe `EsigUtils`.
-* Adiciona testes de `textoSeperado(...)`.
+* Adiciona função `textoSeperado()` na classe `EsigUtils`.
+* Adiciona testes de `textoSeperado()`.
 
 ## [2.1.1] - 14/06/2021
 

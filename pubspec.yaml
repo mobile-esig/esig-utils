@@ -1,6 +1,6 @@
 name: esig_utils
 description: Utilitários para serem usados em projetos flutter.
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/mobile_esig/esig_utils
 
 environment:
