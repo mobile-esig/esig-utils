@@ -1,17 +1,33 @@
 import 'dart:io';
 
-class ExceptionHandler {
+class HttpUtils {
+  static final String serverErrorDefaultMsg =
+      'Erro interno no servidor, contate o desenvolvedor.';
+
+  static final String clientErrorDefaultMsg = 'Erro nas informações enviadas.';
+
+  static final String redirectDefaultMsg =
+      'Serviço sofreu uma atualização ou não está mais disponível.';
+
+  static final String successDefaultMsg = 'Operação bem sucedida.';
+
+  static final String informationDefaultMsg =
+      'Solicitação em andamento, aguarde.';
+
+  static final String unknownStatusDefaultMsg =
+      'Status não identificado. Contate o desenvolvedor.';
+
   /// Traduz resposta do servidor para uma liguagem que os usuários entendam.
   /// Lista de códigos HTTP: [https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status]
-  httpStatusHandler(int statusCode, [String? msg]) {
+  static String httpStatusHandler(int statusCode, [String? msg]) {
     if (msg != null) {
       return '$msg Cód: $statusCode';
     }
 
-    String response = 'Status não identificado. Contate o desenvolvedor.';
+    String response = unknownStatusDefaultMsg;
 
     if (statusCode >= 500 && statusCode <= 599) {
-      response = 'Erro interno no servidor, contate o desenvolvedor.';
+      response = serverErrorDefaultMsg;
     } else if (statusCode >= 400 && statusCode <= 499) {
       switch (statusCode) {
         case HttpStatus.badRequest:
@@ -31,9 +47,9 @@ class ExceptionHandler {
           response = 'Requisição com método incorreto.';
           break;
         default:
-          response = 'Erro nas informações enviadas. Contate o desenvolvedor.';
+          response = clientErrorDefaultMsg;
       }
-    } else if (statusCode >= 200 && statusCode <= 300) {
+    } else if (statusCode >= 200 && statusCode <= 299) {
       switch (statusCode) {
         case HttpStatus.ok:
           response = 'Requisição foi bem sucedida.';
@@ -50,7 +66,7 @@ class ExceptionHandler {
               'Não há conteúdo para enviar para esta solicitação, mas os cabeçalhos podem ser úteis.';
           break;
         default:
-          response = 'Operação bem sucedida.';
+          response = successDefaultMsg;
       }
     } else if (statusCode >= 300 && statusCode <= 399) {
       switch (statusCode) {
@@ -61,13 +77,12 @@ class ExceptionHandler {
           response = 'A URI do recurso requerido mudou.';
           break;
         default:
-          response =
-              'Serviço sofreu uma atualização ou não está mais disponível.';
+          response = redirectDefaultMsg;
       }
     } else if (statusCode <= 199) {
-      response = '';
+      response = informationDefaultMsg;
     }
 
-    return response + 'Cód. $statusCode';
+    return response + ' Cód: $statusCode';
   }
 }
