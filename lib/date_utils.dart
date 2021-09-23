@@ -51,8 +51,9 @@ class EsigDateUtils {
     return '';
   }
 
-  static String formatDateTime(DateTime data,
+  static String formatDateTime(DateTime? data,
       {String format = 'dd/MM/yyyy HH:mm:ss'}) {
+    if (data == null) return '';
     return DateFormat(format, 'pt_BR').format(data);
   }
 

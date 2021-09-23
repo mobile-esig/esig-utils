@@ -2,15 +2,19 @@ import 'package:esig_utils/extensions/zero_pad.dart';
 
 extension DateTimExt on DateTime {
   /// Compara igualdade entre dois [DateTime] desconsiderando tempo
-  bool equalDate(DateTime d) =>
-      this.day == d.day && this.month == d.month && this.year == d.year;
+  bool equalDate(DateTime other) =>
+      this.day == other.day &&
+      this.month == other.month &&
+      this.year == other.year;
 
   /// Compara igualdade entre dois [DateTime] desconsiderando data.
   /// É possível configurar para considerar segundos.
-  bool equalTime(DateTime d, [bool includeSeconds = true]) {
-    bool isSecondsEqual = includeSeconds ? this.second == d.second : true;
+  bool equalTime(DateTime other, [bool includeSeconds = true]) {
+    bool isSecondsEqual = includeSeconds ? this.second == other.second : true;
 
-    return this.hour == d.hour && this.minute == d.minute && isSecondsEqual;
+    return this.hour == other.hour &&
+        this.minute == other.minute &&
+        isSecondsEqual;
   }
 
   /// Retorna String com data formatada.

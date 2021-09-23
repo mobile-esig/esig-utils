@@ -1,3 +1,8 @@
+## [3.1.1] - 23/09/2021
+
+* Cria extension `bool_check.dart`.
+* `formatDateTime` agora pode receber valor nulo.
+
 ## [3.1.0] - 02/08/2021
 
 * Cria `http_utils.dart` com função que traduz mensagens do servidor para uma linguagem mais amigável.
