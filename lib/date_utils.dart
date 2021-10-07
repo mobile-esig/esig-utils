@@ -46,11 +46,7 @@ class EsigDateUtils {
     return DateFormat('yyyy-MM-dd').parse(data);
   }
 
-  @Deprecated('Usar formatDateTime(...) passando a data e o formato desejado')
-  static String formatDateDMA(DateTime data) {
-    return '';
-  }
-
+  // Sobre formatar datas: https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
   static String formatDateTime(DateTime? data,
       {String format = 'dd/MM/yyyy HH:mm:ss'}) {
     if (data == null) return '';

@@ -1,6 +1,6 @@
 import 'package:esig_utils/extensions/zero_pad.dart';
 
-extension DateTimExt on DateTime {
+extension DateTimExtension on DateTime {
   /// Compara igualdade entre dois [DateTime] desconsiderando tempo
   bool equalDate(DateTime other) =>
       this.day == other.day &&

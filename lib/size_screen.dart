@@ -30,16 +30,4 @@ class SizeScreen {
   static double fracHeight(BuildContext context, double divisor) {
     return MediaQuery.of(context).size.height / divisor;
   }
-
-  /// Retorna metade da largura total
-  @Deprecated('Usar [fracWidth(context, 2)] produzirá o mesmo efeito.')
-  static double halfWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width / 2;
-  }
-
-  /// Retorna metade da altura total
-  @Deprecated('Usar [fracHeight(context, 2)] produzirá o mesmo efeito.')
-  static double halfHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height / 2;
-  }
 }

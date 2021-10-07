@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EsigUtils {
   /// Formatação aplicada à valores monetários
   static const String NUMBER_FORMAT = '###,##0.00';
+
+  //TODO: função construtora de queryPrams
 
   static Map<String, dynamic> addParams(
     Map<String, dynamic> map,
@@ -73,32 +73,5 @@ class EsigUtils {
     if (s2 != null) return s2;
 
     return '';
-  }
-
-  // Mostrar Snackbar personalizada
-  @Deprecated(
-      'Essa função será transferida para o pacote "loading_empty_error". Prefira não usá-la.')
-  static void showSnackBar(String mensagem, Color bgColor, BuildContext context,
-      {Duration? duration, IconData? icon, double? bottomPadding}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        padding:
-            EdgeInsets.only(bottom: bottomPadding ?? 10, left: 20, right: 20),
-        content: Row(
-          children: [
-            Icon(icon ?? Icons.info, color: Colors.white),
-            SizedBox(width: 5),
-            Flexible(
-                child: Text(
-              mensagem,
-              overflow: TextOverflow.visible,
-              style: TextStyle(color: Colors.white),
-            )),
-          ],
-        ),
-        backgroundColor: bgColor,
-        duration: duration ?? Duration(seconds: 4),
-      ),
-    );
   }
 }
