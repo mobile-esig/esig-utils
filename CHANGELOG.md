@@ -1,3 +1,8 @@
+## [4.1.0] - 08/10/2021
+
+- Implementa `firstTwoNames` em `string_ext.dart`
+- Implementa `isIndexValid` e `getNullable` em `list_ext.dart`
+
 ## [4.0.0] - 07/10/2021
 
 - Remove snackbar, que foi transferido para `loading_empty_error`

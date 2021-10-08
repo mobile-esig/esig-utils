@@ -93,23 +93,47 @@ void main() {
     });
   });
 
-  group('CapitalizeExtension:', () {
+  group('StringExt:', () {
     test('Capitalize', () {
-      String a = 'fulano smith çegonha | 1';
+      String lowerCaseName = 'fulano smith çegonha | 1';
+      expect(lowerCaseName.capitalize, 'Fulano smith çegonha | 1');
+      expect(lowerCaseName, 'fulano smith çegonha | 1'); // Testa imutabilidade
 
-      expect(a.capitalize, 'Fulano smith çegonha | 1');
-      expect(a, 'fulano smith çegonha | 1'); // Testa imutabilidade
+      String upperCaseName = 'FULANO SMITH ÇEGONHA | 1';
+      expect(upperCaseName.capitalize, 'Fulano smith çegonha | 1');
+      expect(upperCaseName, 'FULANO SMITH ÇEGONHA | 1'); // Testa imutabilidade
     });
 
     test('Capitalize First of Each', () {
-      String a = 'fulano smith çegonha | 1';
+      String normalName = 'fulano smith çegonha | 1';
+      expect(normalName.capitalizeFirstofEach, 'Fulano Smith Çegonha | 1');
+      expect(normalName, 'fulano smith çegonha | 1'); // Testa imutabilidade
 
-      expect(a.capitalizeFirstofEach, 'Fulano Smith Çegonha | 1');
-      expect(a, 'fulano smith çegonha | 1'); // Testa imutabilidade
+      String upperCaseName = 'FULANO SMITH ÇEGONHA | 1';
+      expect(upperCaseName.capitalizeFirstofEach, 'Fulano Smith Çegonha | 1');
+      expect(upperCaseName, 'FULANO SMITH ÇEGONHA | 1'); // Testa imutabilidade
+
+      String randomName = ' | 1 ? ` ';
+      expect(randomName.capitalizeFirstofEach, '| 1 ? `');
+      expect(randomName, ' | 1 ? ` '); // Testa imutabilidade
+    });
+
+    test('firstTwoNames', () {
+      String longName = 'Fulano smith çegonha da Silva';
+      expect(longName.firstTwoNames, 'Fulano smith');
+      expect(longName, 'Fulano smith çegonha da Silva');
+
+      String singleName = 'Fulano';
+      expect(singleName.firstTwoNames, 'Fulano');
+      expect(singleName, 'Fulano');
+
+      String noName = '';
+      expect(noName.firstTwoNames, '');
+      expect(noName, '');
     });
   });
 
-  group('ListExt<T>', () {
+  group('ListExt<T>:', () {
     test('firstOrNull', () {
       List<int> hasFirst = [0, 1, 2];
       expect(hasFirst.firstOrNull, equals(0));
@@ -118,6 +142,29 @@ void main() {
       List<int> noFirst = [];
       expect(noFirst.firstOrNull, isNull);
       expect(noFirst, equals([]));
+    });
+
+    test('isIndexValid', () {
+      List<int> Z = [10, 11];
+      expect(Z.isIndexValid(-1), isFalse);
+      expect(Z.isIndexValid(0), isTrue);
+      expect(Z.isIndexValid(1), isTrue);
+      expect(Z.isIndexValid(2), isFalse);
+      expect(Z, equals([10, 11]));
+
+      List empty = [];
+      expect(empty.isIndexValid(-1), isFalse);
+      expect(empty.isIndexValid(0), isFalse);
+      expect(empty, isEmpty);
+    });
+
+    test('getNullable', () {
+      List<int> Z = [1, 2];
+      expect(Z.getNullable(-1), isNull);
+      expect(Z.getNullable(0), equals(1));
+      expect(Z.getNullable(1), equals(2));
+      expect(Z.getNullable(2), isNull);
+      expect(Z, equals([1, 2]));
     });
   });
 }
