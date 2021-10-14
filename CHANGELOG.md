@@ -1,3 +1,8 @@
+## [4.1.1] - 14/10/2021
+
+- Reformula atributos de `dia.dart` e adiciona métodos
+- Adiciona testes em `dia_test.dart`
+
 ## [4.1.0] - 08/10/2021
 
 - Implementa `firstTwoNames` em `string_ext.dart`

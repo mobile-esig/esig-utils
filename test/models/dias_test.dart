@@ -38,6 +38,32 @@ void main() {
       amanha = dia.maisUmDia;
       expect(amanha.hashCode != dia.hashCode, true);
       expect(amanha, Dia(2021, 1, 1));
+
+      dia = Dia(2021, 1, 1);
+      Dia copia = dia.copia;
+      expect(copia == dia, isTrue);
+      dia = Dia(2020, 2, 2);
+      expect(copia == dia, isFalse);
     });
+  });
+
+  test('faltas', () {
+    Dia d = Dia(2021, 1, 1);
+
+    expect(d.qtdFaltas, equals(0));
+    expect(d.qtdHorarios, equals(0));
+    expect(d.qtdPresencas, equals(0));
+
+    d.qtdFaltas = 5;
+    d.qtdHorarios = 10;
+    expect(d.qtdFaltas, equals(5));
+    expect(d.qtdHorarios, equals(10));
+    expect(d.qtdPresencas, equals(5));
+
+    d.qtdFaltas = 10;
+    d.qtdHorarios = 5;
+    expect(d.qtdFaltas, equals(10));
+    expect(d.qtdHorarios, equals(5));
+    expect(d.qtdPresencas, equals(-5));
   });
 }

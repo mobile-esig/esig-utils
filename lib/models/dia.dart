@@ -1,6 +1,14 @@
 class Dia {
-  DateTime data = DateTime(0);
-  bool presente = false;
+  late DateTime data;
+
+  /// Quantidade de horários neste [Dia]
+  int qtdHorarios = 0;
+
+  /// Quantos horários o aluno faltou neste [Dia].
+  /// OBS: `qtdPresencas = qtdHorario - qtdFaltas`
+  int qtdFaltas = 0;
+
+  /// Indica se houve aula neste dia
   bool houveAula = false;
 
   Dia(int ano, int mes, int dia) {
@@ -16,6 +24,8 @@ class Dia {
   int get ano => this.data.year;
   int get mes => this.data.month;
   int get dia => this.data.day;
+
+  int get qtdPresencas => this.qtdHorarios - this.qtdFaltas;
 
   @override
   bool operator ==(d) {
