@@ -1,4 +1,4 @@
-import 'package:esig_utils/extensions/zero_pad.dart';
+import 'package:esig_utils/extensions/int_ext.dart';
 
 extension DateTimExtension on DateTime {
   /// Compara igualdade entre dois [DateTime] desconsiderando tempo

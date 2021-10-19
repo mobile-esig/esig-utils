@@ -1,3 +1,7 @@
+## [4.1.2] - 19/10/2021
+
+- `toDateTime` adicionado em `intExtension`
+
 ## [4.1.1] - 14/10/2021
 
 - Reformula atributos de `dia.dart` e adiciona métodos

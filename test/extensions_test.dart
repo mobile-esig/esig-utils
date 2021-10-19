@@ -1,5 +1,5 @@
 import 'package:esig_utils/extensions/date_time.dart';
-import 'package:esig_utils/extensions/zero_pad.dart';
+import 'package:esig_utils/extensions/int_ext.dart';
 import 'package:esig_utils/extensions/bool_check.dart';
 import 'package:esig_utils/extensions/string_ext.dart';
 import 'package:esig_utils/extensions/list_ext.dart';
@@ -8,11 +8,23 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   setUp(() {});
 
-  group('ZeroPad: ', () {
+  group('Integer Extension: ', () {
     test('Aplica padding em um dígito', () {
       expect(1.pad, equals('01'));
       expect(11.pad, equals('11'));
       expect(0.pad, equals('00'));
+    });
+
+    test('toDateTime', () {
+      var agora = DateTime(2020, 1, 1);
+      int agoraEmMilliSeconds = agora.millisecondsSinceEpoch;
+      expect(agoraEmMilliSeconds, 1577847600000);
+      expect(agoraEmMilliSeconds.toDateTime, isA<DateTime>());
+      expect(agoraEmMilliSeconds.toDateTime, equals(DateTime(2020, 1, 1)));
+
+      int? dateTimeNull;
+      expect(dateTimeNull, isNull);
+      expect(dateTimeNull?.toDateTime, isNull);
     });
   });
 
