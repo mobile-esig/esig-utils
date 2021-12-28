@@ -1,3 +1,8 @@
+## [4.1.3] - dd/MM/YYYY
+
+- Adiciona abstração `Model`
+- Melhora documentação de `int_ext.dart`
+
 ## [4.1.2] - 19/10/2021
 
 - `toDateTime` adicionado em `intExtension`
