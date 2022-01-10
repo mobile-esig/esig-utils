@@ -1,7 +1,8 @@
-## [4.1.3] - dd/MM/YYYY
+## [4.2.0] - 10/01/2022
 
 - Adiciona abstração `Model`
 - Melhora documentação de `int_ext.dart`
+- Adiciona `NAO_CARREGADO` na enumeração `Status`
 
 ## [4.1.2] - 19/10/2021
 
