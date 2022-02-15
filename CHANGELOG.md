@@ -1,3 +1,9 @@
+## [4.2.1] - DateTimeRangeExtension
+
+- Mudança nos títulos do CHANGELOG. Agora títulos refletem mudanças ao invés de data de lançamento
+- Adiciona `DateTimeRangeExtension`
+- Adiciona `datetimeToString()` no EsigDateUtils
+
 ## [4.2.0] - 10/01/2022
 
 - Adiciona abstração `Model`

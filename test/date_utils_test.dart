@@ -41,6 +41,17 @@ void main() {
       });
     });
 
+    test('datetimeToString', () {
+      var d = EsigDateUtils.datetimeToString('01/02/2022');
+      expect(d, DateTime(2022, 2, 1));
+
+      d = EsigDateUtils.datetimeToString('01-02-2022', format: 'dd-MM-yyyy');
+      expect(d, DateTime(2022, 2, 1));
+
+      d = EsigDateUtils.datetimeToString('01/02/2022 03:59',
+          format: 'dd/MM/yyyy HH:mm');
+      expect(d, DateTime(2022, 2, 1, 3, 59));
+    });
     test('strDMAToDia', () {
       expect(EsigDateUtils.strDiaMesAnoToDia('02-03-2020'), Dia(2020, 3, 2));
       expect(EsigDateUtils.strDiaMesAnoToDia('01-02-2021'), Dia(2021, 2, 1));

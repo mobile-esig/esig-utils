@@ -15,7 +15,11 @@ class EsigDateUtils {
   /// Recebe String com formato 'dd-MM-aaaa hh-mm' e retorna 'dd/MM/aaaa'.
   /// Ex.: '11-10-2020 03:00' é convertido para '11/10/2020'
   static String formatDMA(String data) {
-    return data.split(' ')[0].replaceAll('-', '/');
+    return data.split(' ').first.replaceAll('-', '/');
+  }
+
+  static DateTime datetimeToString(String data, {format = 'dd/MM/yyyy'}) {
+    return DateFormat(format).parse(data);
   }
 
   /// Recebe String no formato 'dd-MM-yyyy' e retorna um [Dia] correspondente
@@ -42,10 +46,6 @@ class EsigDateUtils {
     );
   }
 
-  static DateTime formatDate(String data) {
-    return DateFormat('yyyy-MM-dd').parse(data);
-  }
-
   // Sobre formatar datas: https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
   static String formatDateTime(DateTime? data,
       {String format = 'dd/MM/yyyy HH:mm:ss'}) {
@@ -67,7 +67,6 @@ class EsigDateUtils {
   static String getNomeMes(int mes) {
     var dataComMes = DateTime(0, mes);
     var nomeMes = DateFormat.MMMM('pt_BR').format(dataComMes).toUpperCase();
-
     return nomeMes;
   }
 
