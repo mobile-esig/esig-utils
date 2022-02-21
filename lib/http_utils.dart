@@ -18,7 +18,11 @@ class HttpUtils {
 
   /// Traduz resposta do servidor para uma liguagem que os usuários entendam.
   /// Lista de códigos HTTP: [https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status]
-  static String getMessage(int statusCode, [String? msg]) {
+  static String getMessage(int? statusCode, [String? msg]) {
+    if (statusCode == null) {
+      return msg ?? unknownStatusDefaultMsg;
+    }
+
     if (msg != null) {
       return '$msg Cód: $statusCode';
     }

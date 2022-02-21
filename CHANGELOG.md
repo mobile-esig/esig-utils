@@ -1,3 +1,7 @@
+## [5.0.1] - HttpUtils
+
+- Refatora `HttpUtils`: statusCode agora pode ser null
+
 ## [5.0.0] - HttpUtils e DateTimeRangeExtension
 
 - Renomeia `datetimeToString()` para `datetimeFromString()`

@@ -9,7 +9,6 @@ void main() {
   setUpAll(() {
     msg = 'mensagem de erro ou sucesso';
   });
-
   group('static final constants:', () {
     test('default messages', () {
       expect(HttpUtils.clientErrorDefaultMsg, isNotEmpty);
@@ -22,6 +21,16 @@ void main() {
   });
 
   group('getMessage():', () {
+    test('statusCode == null', () {
+      var resposta = HttpUtils.getMessage(null);
+      expect(resposta, contains(HttpUtils.unknownStatusDefaultMsg));
+      expect(resposta.contains('Cód'), isFalse);
+
+      resposta = HttpUtils.getMessage(null, msg);
+      expect(resposta, contains(msg));
+      expect(resposta.contains('Cód'), isFalse);
+    });
+
     test('msg != null', () {
       final resposta = HttpUtils.getMessage(HttpStatus.badGateway, msg);
       expect(resposta, contains('${HttpStatus.badGateway}'));
