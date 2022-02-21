@@ -2,24 +2,23 @@ import 'dart:io';
 
 class HttpUtils {
   static final String serverErrorDefaultMsg =
-      'Erro interno no servidor, contate o desenvolvedor.';
+      'Erro interno no servidor. Por favor, contate o suporte técnico.';
 
   static final String clientErrorDefaultMsg = 'Erro nas informações enviadas.';
 
-  static final String redirectDefaultMsg =
-      'Serviço sofreu uma atualização ou não está mais disponível.';
+  static final String redirectDefaultMsg = 'Serviço não está mais disponível.';
 
   static final String successDefaultMsg = 'Operação bem sucedida.';
 
   static final String informationDefaultMsg =
-      'Solicitação em andamento, aguarde.';
+      'Solicitação em andamento, por favor, aguarde.';
 
   static final String unknownStatusDefaultMsg =
-      'Status não identificado. Contate o desenvolvedor.';
+      'Um erro ocorreu. Verifique seu acesso à internet ou entre em contato com o suporte técnico.';
 
   /// Traduz resposta do servidor para uma liguagem que os usuários entendam.
   /// Lista de códigos HTTP: [https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status]
-  static String httpStatusHandler(int statusCode, [String? msg]) {
+  static String getMessage(int statusCode, [String? msg]) {
     if (msg != null) {
       return '$msg Cód: $statusCode';
     }
@@ -31,20 +30,23 @@ class HttpUtils {
     } else if (statusCode >= 400 && statusCode <= 499) {
       switch (statusCode) {
         case HttpStatus.badRequest:
-          response = 'Dados enviados contêm algum erro.';
+          response =
+              'Dados enviados contêm algum erro. Verifique e tente novamente';
           break;
         case HttpStatus.unauthorized:
-          response = 'Usuário não autenticado. Realize login novamente.';
+          response =
+              'Usuário não autenticado. Por favor, realize login novamente.';
           break;
         case HttpStatus.forbidden:
           response =
-              'Requisição rejeitada. Você não tem permissão para fazer isso.';
+              'Operação rejeitada. Você não tem permissão para fazer isso.';
           break;
         case HttpStatus.notFound:
-          response = 'Recurso não encontrado.';
+          response = 'Não encontrado.';
           break;
         case HttpStatus.methodNotAllowed:
-          response = 'Requisição com método incorreto.';
+          response =
+              'Erro na comunicação com o servidor. Por favor, entre em contato com o suporte técnico.';
           break;
         default:
           response = clientErrorDefaultMsg;
@@ -52,18 +54,10 @@ class HttpUtils {
     } else if (statusCode >= 200 && statusCode <= 299) {
       switch (statusCode) {
         case HttpStatus.ok:
-          response = 'Requisição foi bem sucedida.';
+          response = 'A operação foi bem sucedida.';
           break;
         case HttpStatus.created:
-          response = 'Objeto criado.';
-          break;
-        case HttpStatus.accepted:
-          response =
-              'A requisição foi recebida mas nenhuma ação foi tomada sobre ela.';
-          break;
-        case HttpStatus.noContent:
-          response =
-              'Não há conteúdo para enviar para esta solicitação, mas os cabeçalhos podem ser úteis.';
+          response = 'Criado com sucesso.';
           break;
         default:
           response = successDefaultMsg;
@@ -74,7 +68,8 @@ class HttpUtils {
           response = 'A requisição tem mais de uma resposta possível.';
           break;
         case HttpStatus.movedPermanently:
-          response = 'A URI do recurso requerido mudou.';
+          response =
+              'O endereço do site mudou. Por favor, entre em contato com o suporte técnico.';
           break;
         default:
           response = redirectDefaultMsg;

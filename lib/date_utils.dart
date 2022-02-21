@@ -18,7 +18,7 @@ class EsigDateUtils {
     return data.split(' ').first.replaceAll('-', '/');
   }
 
-  static DateTime datetimeToString(String data, {format = 'dd/MM/yyyy'}) {
+  static DateTime datetimeFromString(String data, {format = 'dd/MM/yyyy'}) {
     return DateFormat(format).parse(data);
   }
 

@@ -41,14 +41,14 @@ void main() {
       });
     });
 
-    test('datetimeToString', () {
-      var d = EsigDateUtils.datetimeToString('01/02/2022');
+    test('datetimeFromString', () {
+      var d = EsigDateUtils.datetimeFromString('01/02/2022');
       expect(d, DateTime(2022, 2, 1));
 
-      d = EsigDateUtils.datetimeToString('01-02-2022', format: 'dd-MM-yyyy');
+      d = EsigDateUtils.datetimeFromString('01-02-2022', format: 'dd-MM-yyyy');
       expect(d, DateTime(2022, 2, 1));
 
-      d = EsigDateUtils.datetimeToString('01/02/2022 03:59',
+      d = EsigDateUtils.datetimeFromString('01/02/2022 03:59',
           format: 'dd/MM/yyyy HH:mm');
       expect(d, DateTime(2022, 2, 1, 3, 59));
     });

@@ -1,3 +1,8 @@
+## [5.0.0] - HttpUtils e DateTimeRangeExtension
+
+- Renomeia `datetimeToString()` para `datetimeFromString()`
+- Refatora `HttpUtils`: melhora nome da função conversora de códigos HTTP
+
 ## [4.2.1] - DateTimeRangeExtension
 
 - Mudança nos títulos do CHANGELOG. Agora títulos refletem mudanças ao invés de data de lançamento

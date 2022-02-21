@@ -11,7 +11,6 @@ extension DateTimeExtension on DateTime {
   /// É possível configurar para considerar segundos.
   bool equalTime(DateTime other, [bool includeSeconds = true]) {
     bool isSecondsEqual = includeSeconds ? this.second == other.second : true;
-
     return this.hour == other.hour &&
         this.minute == other.minute &&
         isSecondsEqual;
@@ -27,9 +26,7 @@ extension DateTimeExtension on DateTime {
   /// É possível configurar se deve incluir segundos.
   String formattedTime([bool includeSeconds = true, String separator = ':']) {
     String time = '${this.hour.pad}$separator${this.minute.pad}';
-
     if (includeSeconds) time += '$separator${this.second.pad}';
-
     return time;
   }
 
