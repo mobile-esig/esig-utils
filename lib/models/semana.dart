@@ -1,6 +1,7 @@
 import 'package:esig_utils/models/dia.dart';
 import 'package:esig_utils/date_utils.dart';
 
+@Deprecated('Semana será removida em releases futuras e não deve ser usada')
 class Semana {
   List<Dia> dias = [];
 
@@ -12,35 +13,34 @@ class Semana {
 
   List<Dia> get diasUteis {
     try {
-      return this.dias.sublist(primeiroDiaUtil, ultimoDiaUtil);
+      return dias.sublist(primeiroDiaUtil, ultimoDiaUtil);
     } catch (e) {
       return [];
     }
   }
 
-  List<Dia> uteisDoAno(int ano) => this
-      .dias
+  List<Dia> uteisDoAno(int ano) => dias
       .sublist(primeiroDiaUtil, ultimoDiaUtil)
       .where((dia) => dia.ano == ano)
       .toList();
 
   /// Verifica se [d] está entre [dias.first] e [dias.last]
   bool contem(Dia d) =>
-      this.dias.first.emMilisegs <= d.emMilisegs &&
-      this.dias.last.emMilisegs >= d.emMilisegs;
+      dias.first.emMilisegs <= d.emMilisegs &&
+      dias.last.emMilisegs >= d.emMilisegs;
 
   /// Semana é valida se [dias] tiver 7 dias, começar do domingo e terminar no
   /// sábado. Não verifica dias entre [dias.first] e [dias.last].
   bool get valida =>
-      this.dias.length == 7 &&
-      this.dias.first.data.weekday == DateTime.sunday &&
-      this.dias.last.data.weekday == DateTime.saturday;
+      dias.length == 7 &&
+      dias.first.data.weekday == DateTime.sunday &&
+      dias.last.data.weekday == DateTime.saturday;
 
   @override
-  bool operator ==(s) {
-    return s is Semana &&
-        this.dias.first == s.dias.first &&
-        this.dias.last == s.dias.last;
+  bool operator ==(other) {
+    return other is Semana &&
+        dias.first == other.dias.first &&
+        dias.last == other.dias.last;
   }
 
   @override

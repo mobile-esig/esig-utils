@@ -1,7 +1,9 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
+import 'package:esig_utils/date_utils.dart';
 import 'package:esig_utils/models/dia.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import '../lib/date_utils.dart';
 
 void main() {
   initializeDateFormatting('pt_BR', null);
@@ -35,10 +37,10 @@ void main() {
       dia = Dia(2020, 10, 25); // domingo
       var diaUtil = [false, true, true, true, true, true, false];
 
-      diaUtil.forEach((du) {
+      for (var du in diaUtil) {
         expect(dia.util, du);
         dia = dia.maisUmDia;
-      });
+      }
     });
 
     test('datetimeFromString', () {
@@ -69,10 +71,10 @@ void main() {
       ];
       dia = Dia(2020, 10, 25);
 
-      diaNomes.forEach((diaNome) {
+      for (var diaNome in diaNomes) {
         expect(EsigDateUtils.getNomeDiaSemana(dia), diaNome);
         dia = dia.maisUmDia;
-      });
+      }
     });
 
     test('getPrimeiroDomingo', () {
@@ -133,10 +135,10 @@ void main() {
 
     test('getNomeMeses', () {
       int i = 1;
-      nomesMeses.forEach((nomeMes) {
+      for (var nomeMes in nomesMeses) {
         expect(EsigDateUtils.getNomeMeses([i]), nomeMes);
         i++;
-      });
+      }
 
       for (i = DateTime.january; i <= DateTime.december; i++) {
         for (int j = DateTime.january; j <= DateTime.december; j++) {

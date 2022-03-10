@@ -1,3 +1,4 @@
+@Deprecated('Dia será removido em releases futuras e não deve ser usado')
 class Dia {
   late DateTime data;
 
@@ -21,31 +22,32 @@ class Dia {
     data = d;
   }
 
-  int get ano => this.data.year;
-  int get mes => this.data.month;
-  int get dia => this.data.day;
+  int get ano => data.year;
+  int get mes => data.month;
+  int get dia => data.day;
 
-  int get qtdPresencas => this.qtdHorarios - this.qtdFaltas;
+  int get qtdPresencas => qtdHorarios - qtdFaltas;
 
   @override
-  bool operator ==(d) {
-    return d is Dia &&
-        this.ano == d.ano &&
-        this.mes == d.mes &&
-        this.dia == d.dia;
+  bool operator ==(other) {
+    return other is Dia &&
+        ano == other.ano &&
+        mes == other.mes &&
+        dia == other.dia;
   }
 
   @override
   int get hashCode => data.hashCode;
 
-  String toString() => this.data.toString();
+  @override
+  String toString() => data.toString();
 
-  Dia get maisUmDia => Dia.fromDateTime(this.data.add(Duration(days: 1)));
-  Dia get menosUmDia => Dia.fromDateTime(this.data.subtract(Duration(days: 1)));
-  bool get primeiroDoMes => this.data.day == 1;
+  Dia get maisUmDia => Dia.fromDateTime(data.add(const Duration(days: 1)));
+  Dia get menosUmDia => Dia.fromDateTime(data.subtract(const Duration(days: 1)));
+  bool get primeiroDoMes => data.day == 1;
   bool get util =>
-      this.data.weekday >= DateTime.monday &&
-      this.data.weekday <= DateTime.friday;
-  int get emMilisegs => this.data.millisecondsSinceEpoch;
-  Dia get copia => Dia(this.data.year, this.data.month, this.data.day);
+      data.weekday >= DateTime.monday &&
+      data.weekday <= DateTime.friday;
+  int get emMilisegs => data.millisecondsSinceEpoch;
+  Dia get copia => Dia(data.year, data.month, data.day);
 }

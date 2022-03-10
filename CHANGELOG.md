@@ -1,3 +1,9 @@
+## [5.1.0] - DateTime
+
+- Novas extensions em `DateTime` com testes.
+- Aplica refatorações sugeridas pelo `flutter_lints`
+- Depreciação das classes `Dia` e `Semana`
+
 ## [5.0.1] - HttpUtils
 
 - Refatora `HttpUtils`: statusCode agora pode ser null

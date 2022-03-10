@@ -1,8 +1,10 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
+import 'package:esig_utils/date_utils.dart';
 import 'package:esig_utils/models/dia.dart';
 import 'package:esig_utils/models/semana.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../lib/date_utils.dart';
 
 void main() {
   group('Semana:', () {

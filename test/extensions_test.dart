@@ -6,19 +6,21 @@ import 'package:esig_utils/extensions/list_ext.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  setUp(() {});
+  setUpAll(() {});
 
   group('Integer Extension: ', () {
     test('Aplica padding em um dígito', () {
       expect(1.pad, equals('01'));
+      expect(10.pad, equals('10'));
       expect(11.pad, equals('11'));
       expect(0.pad, equals('00'));
+      expect((-1).pad, equals('-1'));
     });
 
     test('toDateTime', () {
       var agora = DateTime(2020, 1, 1);
       int agoraEmMilliSeconds = agora.millisecondsSinceEpoch;
-      expect(agoraEmMilliSeconds, 1577847600000);
+      expect(agoraEmMilliSeconds, equals(1577847600000));
       expect(agoraEmMilliSeconds.toDateTime, isA<DateTime>());
       expect(agoraEmMilliSeconds.toDateTime, equals(DateTime(2020, 1, 1)));
 
@@ -86,6 +88,35 @@ void main() {
 
       // Separador
       expect(data.formattedTime(true, '-'), equals('23-59-00'));
+    });
+
+    test('horaInicial', () {
+      final d = DateTime(2022, 1, 1, 1, 1, 1);
+      final horaInicial = d.horaInicial;
+      expect(horaInicial, DateTime(2022, 1, 1));
+      expect(d, DateTime(2022, 1, 1, 1, 1, 1));
+      expect(d.isAtSameMomentAs(horaInicial), isFalse);
+    });
+
+    test('horaFinal', () {
+      final d = DateTime(2022, 1, 1, 1, 1, 1);
+      final horaFinal = d.horaFinal;
+      expect(horaFinal, DateTime(2022, 1, 1, 23, 59, 59));
+      expect(d, DateTime(2022, 1, 1, 1, 1, 1));
+      expect(d.isAtSameMomentAs(horaFinal), isFalse);
+    });
+
+    test('truncateFuture', () {
+      final passado = DateTime.now().subtract(const Duration(days: 1));
+      final futuro = DateTime.now().add(const Duration(days: 1));
+
+      final passadotruncado = passado.truncateFuture;
+      final futurotruncado = futuro.truncateFuture;
+
+      expect(passado.isAtSameMomentAs(passadotruncado), isTrue);
+      expect(futuro.isAtSameMomentAs(futurotruncado), isFalse);
+      // futuroTruncado < futuro
+      expect(futuro.compareTo(futurotruncado) > 0, isTrue);
     });
   });
 

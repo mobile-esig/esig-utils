@@ -1,19 +1,19 @@
 import 'dart:io';
 
 class HttpUtils {
-  static final String serverErrorDefaultMsg =
+  static const String serverErrorDefaultMsg =
       'Erro interno no servidor. Por favor, contate o suporte técnico.';
 
-  static final String clientErrorDefaultMsg = 'Erro nas informações enviadas.';
+  static const String clientErrorDefaultMsg = 'Erro nas informações enviadas.';
 
-  static final String redirectDefaultMsg = 'Serviço não está mais disponível.';
+  static const String redirectDefaultMsg = 'Serviço não está mais disponível.';
 
-  static final String successDefaultMsg = 'Operação bem sucedida.';
+  static const String successDefaultMsg = 'Operação bem sucedida.';
 
-  static final String informationDefaultMsg =
+  static const String informationDefaultMsg =
       'Solicitação em andamento, por favor, aguarde.';
 
-  static final String unknownStatusDefaultMsg =
+  static const String unknownStatusDefaultMsg =
       'Um erro ocorreu. Verifique seu acesso à internet ou entre em contato com o suporte técnico.';
 
   /// Traduz resposta do servidor para uma liguagem que os usuários entendam.

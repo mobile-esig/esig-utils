@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:esig_utils/models/dia.dart';
 import 'package:intl/intl.dart';
 
@@ -76,9 +78,9 @@ class EsigDateUtils {
     List<DateTime> datasComMes = meses.map((mes) => DateTime(0, mes)).toList();
     List<String> nomes = [];
 
-    datasComMes.forEach((data) {
+    for (var data in datasComMes) {
       nomes.add(DateFormat.MMMM('pt_BR').format(data).toUpperCase());
-    });
+    }
 
     return nomes.join(' / ');
   }
