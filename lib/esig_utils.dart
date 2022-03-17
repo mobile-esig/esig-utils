@@ -7,8 +7,6 @@ class EsigUtils {
   /// Formatação aplicada à valores monetários
   static const String NUMBER_FORMAT = '###,##0.00';
 
-  //TODO: função construtora de queryPrams
-
   static Map<String, dynamic> addParams(
     Map<String, dynamic> map,
     Map<String, dynamic> objects,

@@ -1,3 +1,7 @@
+## [5.2.0] - Debouncer
+
+- Debouncer adicionado
+
 ## [5.1.0] - DateTime
 
 - Novas extensions em `DateTime` com testes.
