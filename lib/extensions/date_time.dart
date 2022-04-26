@@ -3,17 +3,13 @@ import 'package:esig_utils/extensions/int_ext.dart';
 extension DateTimeExtension on DateTime {
   /// Compara igualdade entre dois [DateTime] desconsiderando tempo
   bool equalDate(DateTime other) =>
-      day == other.day &&
-      month == other.month &&
-      year == other.year;
+      day == other.day && month == other.month && year == other.year;
 
   /// Compara igualdade entre dois [DateTime] desconsiderando data.
   /// É possível configurar para considerar segundos.
   bool equalTime(DateTime other, [bool includeSeconds = true]) {
     bool isSecondsEqual = includeSeconds ? second == other.second : true;
-    return hour == other.hour &&
-        minute == other.minute &&
-        isSecondsEqual;
+    return hour == other.hour && minute == other.minute && isSecondsEqual;
   }
 
   /// Retorna String com data formatada.
@@ -58,4 +54,6 @@ extension DateTimeExtension on DateTime {
     }
     return this;
   }
+
+  bool get isDatePast => horaInicial.isBefore(DateTime.now().horaInicial);
 }

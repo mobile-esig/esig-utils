@@ -3,6 +3,8 @@ import 'package:esig_utils/extensions/int_ext.dart';
 import 'package:esig_utils/extensions/bool_check.dart';
 import 'package:esig_utils/extensions/string_ext.dart';
 import 'package:esig_utils/extensions/list_ext.dart';
+import 'package:esig_utils/extensions/date_time_range.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -208,6 +210,37 @@ void main() {
       expect(Z.getNullable(1), equals(2));
       expect(Z.getNullable(2), isNull);
       expect(Z, equals([1, 2]));
+    });
+  });
+
+  group('DateTimeRange', () {
+    test('toDateTimeList', () {
+      final range = DateTimeRange(
+        start: DateTime(2022, 1, 1),
+        end: DateTime(2022, 1, 31),
+      );
+
+      final dateTimes = range.toDateTimeList;
+
+      expect(dateTimes, isA<List<DateTime>>());
+      expect(dateTimes.length, equals(31));
+      expect(dateTimes.first, equals(DateTime(2022, 1, 1)));
+      expect(dateTimes.last, equals(DateTime(2022, 1, 31)));
+    });
+
+    test('intervaloDeUmDia', () {
+      final rangeDia = DateTimeRange(
+        start: DateTime(2022, 1, 1),
+        end: DateTime(2022, 1, 1),
+      );
+
+      final rangeAno = DateTimeRange(
+        start: DateTime(2022, 1, 1),
+        end: DateTime(2023, 1, 1),
+      );
+
+      expect(rangeDia.intervaloDeUmDia, isTrue);
+      expect(rangeAno.intervaloDeUmDia, isFalse);
     });
   });
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+/// TODO: escrever documentação
 class Debouncer {
   final int milliseconds;
   Timer? _timer;

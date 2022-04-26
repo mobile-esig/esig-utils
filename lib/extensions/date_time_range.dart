@@ -17,4 +17,11 @@ extension DateTimeRangeExtension on DateTimeRange {
       );
     }
   }
+
+  List<DateTime> get toDateTimeList => List<DateTime>.generate(
+        duration.inDays + 1,
+        (index) => start.add(
+          Duration(days: index),
+        ),
+      );
 }

@@ -1,6 +1,3 @@
-// ignore_for_file: deprecated_member_use_from_same_package
-
-import 'package:esig_utils/models/dia.dart';
 import 'package:intl/intl.dart';
 
 class EsigDateUtils {
@@ -22,11 +19,6 @@ class EsigDateUtils {
 
   static DateTime datetimeFromString(String data, {format = 'dd/MM/yyyy'}) {
     return DateFormat(format).parse(data);
-  }
-
-  /// Recebe String no formato 'dd-MM-yyyy' e retorna um [Dia] correspondente
-  static Dia strDiaMesAnoToDia(String data) {
-    return Dia.fromDateTime(DateFormat('dd-MM-yyyy').parse(data));
   }
 
   /// Recebe String com formato 'dd-MM-aaaa hh-mm' e retorna o DateTime
@@ -53,10 +45,6 @@ class EsigDateUtils {
       {String format = 'dd/MM/yyyy HH:mm:ss'}) {
     if (data == null) return '';
     return DateFormat(format, 'pt_BR').format(data);
-  }
-
-  static String getNomeDiaSemana(Dia dia) {
-    return DateFormat.EEEE('pt_BR').format(dia.data).toUpperCase();
   }
 
   static String getNomeMesAbrev(int mes) {
@@ -118,41 +106,5 @@ class EsigDateUtils {
       default:
         return 0;
     }
-  }
-
-  /// Começa busca pelo 1º dia do mês de [dia]
-  static Dia getPrimeiroDomingo(Dia dia) {
-    Dia primeiroDomingo = Dia(dia.ano, dia.mes, 1);
-
-    while (primeiroDomingo.data.weekday != DateTime.sunday) {
-      primeiroDomingo = primeiroDomingo.menosUmDia;
-    }
-
-    return primeiroDomingo;
-  }
-
-  /// Começa busca pelo último dia do mês do [dia] passado
-  static Dia getUltimoSabado(Dia dia) {
-    Dia ultimoSabado = dia.mes == DateTime.december
-        ? Dia(dia.ano, DateTime.december, 31)
-        : Dia(dia.ano, dia.mes + 1, 0);
-
-    while (ultimoSabado.data.weekday != DateTime.saturday) {
-      ultimoSabado = ultimoSabado.maisUmDia;
-    }
-
-    return ultimoSabado;
-  }
-
-  static List<Dia> getListaDias(Dia primeiro, Dia ultimo) {
-    List<Dia> lista = [];
-    Dia atual = primeiro.copia;
-
-    while (atual.data.compareTo(ultimo.data) <= 0) {
-      lista.add(atual);
-      atual = atual.maisUmDia;
-    }
-
-    return lista;
   }
 }

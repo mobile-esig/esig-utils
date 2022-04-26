@@ -1,3 +1,10 @@
+## [5.3.0] - DateTimeRange Extension; Models
+
+- Remove modelos: Dia, Semana
+- Refatora DateUtils após remoção de modelos
+- Adiciona get `toDateTimeList` no DateTimeRangeExtension
+- Corrige nome de debouncer (estava debounder)
+
 ## [5.2.0] - Debouncer
 
 - Debouncer adicionado
