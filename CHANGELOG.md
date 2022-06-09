@@ -1,3 +1,7 @@
+## [5.4.0] - addListSeparator
+
+- Adiciona `addListSeparator`, método que insere o objeto do tipo T entre os elementos da lista passada.
+
 ## [5.3.0] - DateTimeRange Extension; Models
 
 - Remove modelos: Dia, Semana

@@ -7,19 +7,6 @@ class EsigUtils {
   /// Formatação aplicada à valores monetários
   static const String NUMBER_FORMAT = '###,##0.00';
 
-  static Map<String, dynamic> addParams(
-    Map<String, dynamic> map,
-    Map<String, dynamic> objects,
-  ) {
-    objects.forEach((key, value) {
-      if (value != null) {
-        map[key] = value;
-      }
-    });
-
-    return map;
-  }
-
   static String convertToReal(double valor) {
     if (valor == 0) return '0,00';
     return NumberFormat(NUMBER_FORMAT, 'pt_BR').format(valor);
@@ -72,5 +59,19 @@ class EsigUtils {
     if (s2 != null) return s2;
 
     return '';
+  }
+
+  /// Método que insere o objeto do tipo T entre os elementos da lista passada.
+  ///
+  /// Ex.: Se `List<int> list = [1,2,3]`, e `separator = 0`. Resultado é: `[1, 0, 2, 0, 3]`.
+  ///
+  /// Ex.: Se `List<String> list = ['kiwi', 'banana']` e `separator = ', '`. Resultado é: `['kiwi', ', ', 'banana']`.
+  static List<T> addListSeparator<T>(List<T> list, T separator) {
+    final result = List<T>.empty(growable: true);
+    for (var item in list) {
+      result.addAll([item, separator]);
+    }
+    result.removeLast();
+    return result;
   }
 }

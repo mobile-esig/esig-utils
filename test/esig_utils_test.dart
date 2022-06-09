@@ -106,4 +106,21 @@ void main() {
       expect(texto, '');
     });
   });
+
+  group('addListSeparator', () {
+    test('int list', () {
+      final List<int> list = [1, 2, 3];
+      const int separator = 0;
+      final result = EsigUtils.addListSeparator(list, separator);
+      expect(result, equals([1, 0, 2, 0, 3]));
+    });
+
+    test('string list', () {
+      final List<String> list = ['kiwi', 'banana'];
+      const String separator = ', ';
+      final result = EsigUtils.addListSeparator(list, separator);
+      expect(result, equals(['kiwi', ', ', 'banana']));
+      expect(result.join(), equals('kiwi, banana'));
+    });
+  });
 }

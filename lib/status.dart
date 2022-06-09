@@ -20,7 +20,6 @@ enum Status {
 
 extension StatusExt on Status {
   static String msg = '';
-
   set mensagem(String novaMsg) => msg = novaMsg;
   String get mensagem => msg;
 }
