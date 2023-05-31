@@ -1,11 +1,5 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Flutter package
-
-on:
+name: RELEASE
+on: 
   push:
     branches: [ master ]
   pull_request:
@@ -15,51 +9,38 @@ env:
   PUB_ENVIRONMENT: bot.github
 
 jobs:
-  # Check code formatting and static analysis on a single OS (linux)
-  # against dev, stable, and 2.12.0 (the package's lower bound).
-  analyze:
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        sdk: [dev, stable, 3.10.0]
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1.0
+      - name: Configure signature
+        run: |
+          echo "${{secrets.KEY_PROPERTIES}}" > android/key.properties
+          echo "${{secrets.RELEASE_KEYSTORE}}" > upload-keystore.encoded
+          base64 -d -i upload-keystore.encoded > ./android/app/upload-keystore.jks
+      - uses: actions/setup-java@v1
         with:
-          sdk: ${{ matrix.sdk }}
-      - id: install
-        name: Install dependencies
-        run: flutter pub get
-      - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed .
-        if: matrix.sdk == 'dev' && steps.install.outcome == 'success'
-      - name: Analyze code
-        run: dart analyze --fatal-infos
-        if: always() && steps.install.outcome == 'success'
-
-  # Run tests on a matrix consisting of two dimensions:
-  # 1. OS: ubuntu-latest
-  # 2. Release channel: dev, stable, and 2.12.0 (the package's lower bound)
-  test:
-    needs: analyze
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        sdk: [dev, stable, 3.10.0]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1.0
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
         with:
-          sdk: ${{ matrix.sdk }}
-      - id: install
-        name: Install dependencies
-        run: flutter pub get
-      - name: Run VM tests
-        run: dart test --platform vm
-        if: always() && steps.install.outcome == 'success'
-      - name: Run Chrome tests
-        run: dart test --platform chrome
-        if: always() && steps.install.outcome == 'success'
+          flutter-version: '2.5.0'
+          channel: stable
+      - name: Build apk
+        run: | 
+          flutter pub get
+          flutter format --set-exit-if-changed .
+          flutter analyze
+          flutter test
+          flutter build apk
+      - name: Retrieve Release Version
+        id: versionstep
+        run: |
+          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2)
+          echo "::set-output name=VERSION::$VERSION"
+      - name: Upload the APK onto Github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'build/app/outputs/flutter-apk/*.apk'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.versionstep.outputs.VERSION }}
+      
