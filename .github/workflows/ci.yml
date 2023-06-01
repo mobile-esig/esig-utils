@@ -1,46 +1,94 @@
-name: RELEASE
-on: 
-  push:
-    branches: [ master ]
+name: release
+
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
   pull_request:
-    branches: [ master ]
+    branches: [main, develop]
+
+    paths-ignore:
+      - "**.md"
+      - ".fvm/**"
+      - ".github/**"
+      - ".vscode/**"
+      - "customizations/**"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 env:
-  PUB_ENVIRONMENT: bot.github
+  JAVA_VERSION: 11.x
+  JAVA_DISTRIBUTION: temurin
+  FLUTTER_VERSION: 3.3.10
+  FLUTTER_CHANNEL: stable
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  build:
+    name: Check PR
+    runs-on: self-hosted-linux
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Configure signature
-        run: |
-          echo "${{secrets.KEY_PROPERTIES}}" > android/key.properties
-          echo "${{secrets.RELEASE_KEYSTORE}}" > upload-keystore.encoded
-          base64 -d -i upload-keystore.encoded > ./android/app/upload-keystore.jks
-      - uses: actions/setup-java@v1
+      - name: Checkout ⬇️
+        uses: actions/checkout@v3.1.0
+
+      - name: Set up JDK  ⬇️
+        uses: actions/setup-java@v3.5.1
         with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+      - name: SSH Agent ⬇️
+        uses: webfactory/ssh-agent@v0.7.0
         with:
-          flutter-version: '2.5.0'
-          channel: stable
-      - name: Build apk
-        run: | 
-          flutter pub get
-          flutter format --set-exit-if-changed .
-          flutter analyze
-          flutter test
-          flutter build apk
-      - name: Retrieve Release Version
-        id: versionstep
-        run: |
-          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2)
-          echo "::set-output name=VERSION::$VERSION"
-      - name: Upload the APK onto Github
-        uses: ncipollo/release-action@v1
+          ssh-private-key: |
+            ${{ secrets.SSH_KOBE_ECOMMERCE_CLOUD }}
+            ${{ secrets.SSH_KOBE_ECOMMERCE_CORE }}
+            ${{ secrets.SSH_KOBE_ECOMMERCE_DESIGN_SYSTEM }}
+            ${{ secrets.SSH_KOBE_ECOMMERCE_PAYMENTS }}
+
+      - name: Flutter Pub Get ⬇️
+        run: fvm flutter pub get
+
+      - name: Flutter Analyze ⬇️
+        run: fvm flutter analyze > flutter_analyze_report.txt
+        continue-on-error: true
+
+      - name: Flutter Test ⬇️
+        run: fvm flutter test --machine --coverage --update-goldens --tags=golden > test-results.json
+        continue-on-error: true
+
+      - name: Flutter Test Reporter ⬇️
+        uses: dorny/test-reporter@v1
         with:
-          artifacts: 'build/app/outputs/flutter-apk/*.apk'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.versionstep.outputs.VERSION }}
-      
+          name: test-results
+          path: test-results.json
+          reporter: flutter-json
+
+      # begin Danger
+      # - name: Setup Ruby ⬇️
+      #   uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: ${{ env.RUBY_VERSION }}
+
+      - name: Cache ⬇️
+        uses: actions/cache@v3.0.11
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile') }} # change your gemfile path
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      # - name: Install Danger Flutter Lint ⬇️
+      #   run: gem install danger-flutter_lint
+
+      - run: bundle config set --local path 'vendor/bundle'
+
+      - name: Danger Action ⬇️
+        uses: MeilCli/danger-action@v5
+        with:
+          plugins_file: "Gemfile"
+          install_path: "vendor/bundle"
+          danger_file: "Dangerfile"
+          danger_id: "danger-pr"
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.KOBINHO_DANGER_GITHUB_API_TOKEN }}
+      # end Danger
