@@ -82,6 +82,6 @@ class HttpUtils {
       response = informationDefaultMsg;
     }
 
-    return response + ' Cód: $statusCode';
+    return '$response Cód: $statusCode';
   }
 }
