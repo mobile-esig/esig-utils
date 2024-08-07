@@ -1,11 +1,11 @@
 name: esig_utils
 description: Utilitários para serem usados em projetos flutter.
-version: 5.4.2
+version: 5.4.3
 homepage: https://github.com/mobile_esig/esig_utils
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.12.0 <4.0.0"
+  flutter: ">=3.24.0"
 
 dependencies:
   flutter:
