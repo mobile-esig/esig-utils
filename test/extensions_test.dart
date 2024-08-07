@@ -22,7 +22,7 @@ void main() {
     test('toDateTime', () {
       var agora = DateTime(2020, 1, 1);
       int agoraEmMilliSeconds = agora.millisecondsSinceEpoch;
-      expect(agoraEmMilliSeconds, equals(1577847600000));
+      expect(agoraEmMilliSeconds, equals(1577836800000));
       expect(agoraEmMilliSeconds.toDateTime, isA<DateTime>());
       expect(agoraEmMilliSeconds.toDateTime, equals(DateTime(2020, 1, 1)));
 
